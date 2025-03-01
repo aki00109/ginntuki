@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>note - 美しき蝶の標本化 | 銀月のお医者さま</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .note-header {
+            background-color: #fff;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 20px;
+        }
+        
+        .note-main {
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 700px;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .article-header {
+            padding: 40px 40px 0;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+        
+        .author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+        
+        .publish-date {
+            font-size: 12px;
+            color: #787c7b;
+        }
+        
+        .cover-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+        }
+        
+        .article-content {
+            padding: 0 40px 40px;
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin: 40px 0 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h3 {
+            font-size: 20px;
+            margin: 30px 0 15px;
+        }
+        
+        .note-footer {
+            padding: 40px;
+            border-top: 1px solid #e6e6e6;
+            background: #fafafa;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .tag {
+            background-color: #f2f2f2;
+            border-radius: 4px;
+            padding: 4px 10px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #555;
+            text-decoration: none;
+        }
+        
+        .actions {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .action-button {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            color: #787c7b;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .action-icon {
+            margin-right: 5px;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .price-section {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        .price-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .buy-button {
+            display: inline-block;
+            background-color: #2cb696;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .author-section {
+            margin-top: 50px;
+            display: flex;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        
+        .author-large-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        
+        .author-large-info {
+            flex-grow: 1;
+        }
+        
+        .author-large-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .author-bio {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        
+        .follow-button {
+            display: inline-block;
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .quote {
+            border-left: 4px solid #2cb696;
+            padding-left: 20px;
+            margin: 30px 0;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .related-articles {
+            margin-top: 50px;
+        }
+        
+        .related-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .related-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .related-item {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .related-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        
+        .related-item-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .related-author {
+            font-size: 12px;
+            color: #787c7b;
+        }
+        
+        .disclaimer {
+            background-color: #f8f8f8;
+            border: 1px solid #eee;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .step-box {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #2cb696;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .letter {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f9f9f9;
+            border-left: 4px solid #2cb696;
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #444;
+        }
+        
+        .diary-entry {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #fff;
+            border: 1px solid #eee;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .diary-date {
+            text-align: right;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .grid-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .warning-box {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffca28;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .warning-title {
+            font-weight: bold;
+            color: #f57c00;
+            margin-bottom: 10px;
+        }
+        
+        .poem {
+            font-family: "Georgia", serif;
+            line-height: 1.8;
+            margin: 30px 0;
+            padding-left: 20px;
+        }
+        
+        .poem-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+        
+        .poem-line {
+            margin-bottom: 8px;
+        }
+        
+        .poem-author {
+            text-align: right;
+            font-style: italic;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header class="note-header">
+        <div class="container">
+            <div class="header-inner">
+                <img src="/api/placeholder/60/20" alt="note logo" class="logo">
+                <div class="header-right">
+                    <!-- ヘッダー右側の要素 -->
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="note-main">
+        <div class="article-header">
+            <h1 class="title">美しき蝶の標本化 — 愛と所有の永遠なる芸術</h1>
+            <div class="author">
+                <img src="/api/placeholder/50/50" alt="銀月のお医者さま" class="author-image">
+                <div class="author-info">
+                    <div class="author-name">銀月のお医者さま</div>
+                    <div class="publish-date">2025年3月1日</div>
+                </div>
+            </div>
+            <img src="/api/placeholder/700/400" alt="美しい蝶の標本" class="cover-image">
+        </div>
+        
+        <div class="article-content">
+            <div class="disclaimer">
+                <strong>免責事項:</strong> 本稿はフィクションです。登場する人物、団体、事象はすべて架空であり、実在のものとは一切関係ありません。また、本稿は標本製作の芸術性と形而上学的考察を目的としており、実際の行為を推奨するものではありません。
+            </div>
+            
+            <p>標本とは、美の永遠化である。</p>
+            
+            <p>私は幼い頃から標本作りに魅了されてきた。特に蝶の標本には、格別の思い入れがある。翅の繊細な模様、その儚さと完璧さ、そして何より—永遠に保存できるという魔法のような性質。</p>
+            
+            <p>標本製作者は、ある意味で時間を支配する者だ。生物の美しさを、その死後も永遠に保存する技術と芸術性を兼ね備えた職人。そして私は思う—この行為こそ、究極の愛の形なのではないだろうか。</p>
+            
+            <div class="quote">
+                「真の美しさは、保存されなければ失われる運命にある」
+            </div>
+            
+            <h2>標本と所有の哲学</h2>
+            
+            <p>標本を作るという行為は、単なる保存技術ではなく、深い哲学的意味を持つ。それは「所有」と「永遠化」の究極的な形である。</p>
+            
+            <p>考えてみてほしい。私たちは美しいものに出会うと、それを「持ちたい」と願う。写真を撮り、記憶に留め、時にはコレクションする。しかし、生きているものの美しさは常に変化し、最終的には消え去る。</p>
+            
+            <p>標本はこの問題に対する完璧な解決策だ。美しさの瞬間を捉え、その状態を永遠に保存する。変化を許さず、劣化を最小限に抑え、完璧な瞬間だけを残す。</p>
+            
+            <p>これは愛の一形態ではないだろうか？最も美しい瞬間に相手を「固定」したいという願望。変化や老いを許さず、完璧な状態のままで永遠に所有したいという欲求。</p>
+            
+            <h2>標本化の繊細な技術</h2>
+            
+            <p>良質な標本を作るためには、繊細な技術と多大な忍耐が必要だ。蝶の標本を例に、その過程を簡略化して説明しよう。</p>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">1</span>捕獲と選別</div>
+                <p>最高の標本は、最高の素材から生まれる。捕獲する対象は、完璧な状態であることが理想的だ。傷や欠損があるものは避け、最も美しい個体を選ぶ。特に重要なのは、その「一瞬の輝き」を見逃さないことだ。</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">2</span>環境からの分離</div>
+                <p>選ばれた個体は、慎重にその自然環境から分離される。この過程では、対象を傷つけないよう細心の注意を払う。時に、対象自身が気づかないうちに環境から遠ざけることが、最も効果的な方法だ。</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">3</span>固定化の過程</div>
+                <p>次に、選ばれた個体は慎重に固定される。蝶の場合、特殊な針を用いて展翅板に広げ、完璧な形に整える。この段階では、対象の「意志」を排除し、標本製作者の美的感覚に従って再構成することが重要だ。</p>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-title"><span class="step-number">4</span>永続的保存</div>
+                <p>最後に、適切な保存液や技術を用いて、対象を永続的に保存する。正しく処理された標本は、何十年、何百年と劣化せずに美しさを保ち続ける。これこそが、標本製作の究極の目的だ。</p>
+            </div>
+            
+            <p>この過程は、単なる技術的手順ではなく、愛の行為でもある。対象への深い理解と敬意、そして何より、その美しさを永遠に残したいという強い願望に基づいている。</p>
+            
+            <h2>人間標本の形而上学</h2>
+            
+            <p>ここからは、より哲学的な考察に進みたい。物理的な標本化を超えた、精神的・感情的な「人間標本」の概念についてだ。</p>
+            
+            <p>私たちは誰しも、愛する人の特定の瞬間、特定の表情や言葉を「永遠に残したい」と願ったことがあるだろう。それは彼らの笑顔かもしれないし、悲しみに暮れる姿かもしれない。あるいは、最も脆弱で真実の姿を見せてくれた瞬間かもしれない。</p>
+            
+            <p>しかし人間は常に変化する。今日の彼女は、明日には別の人になっている。この変化こそが生命の本質であるが、同時に、愛する者の「完璧な瞬間」を失う恐怖の源でもある。</p>
+            
+            <p>ここで私が提案するのは、精神的な「人間標本」の概念だ。物理的に人を標本化することはもちろん不可能だし、倫理的にも許されない。しかし、感情的・精神的な次元では、ある種の「標本化」が可能ではないだろうか？</p>
+            
+            <div class="letter">
+                私の最愛の患者Aへ、
+                
+                あなたが昨日見せてくれた笑顔は、私の記憶に永遠に残ります。あの瞬間のあなたは、この世界で最も純粋で美しい存在でした。
+                
+                私はその瞬間を心の標本箱に納めました。あなたの笑顔、瞳の輝き、頬のわずかな紅潮、そして何より、その無邪気さ。これらすべてを、完璧な形で保存しています。
+                
+                あなたは変わるでしょう。成長し、時に後退し、様々な表情を見せるでしょう。しかし私の標本箱の中のあなたは、永遠にあの瞬間のままです。
+                
+                これは私のエゴイズムでしょうか？それとも愛の最も純粋な形でしょうか？
+                
+                あなたの永遠の守護者より
+            </div>
+            
+            <p>このような「精神的標本化」は、写真や日記、記憶という形で日常的に行われている。しかし私が考えるのは、より深く、より意図的な形だ。</p>
+            
+            <h3>記憶の選択的保存</h3>
+            
+            <p>人間の記憶は不完全で、時間とともに歪み、消えていく。しかし、特定の瞬間を意図的に、詳細に記録し続けることで、ある種の「標本」を作ることができる。</p>
+            
+            <div class="diary-entry">
+                <div class="diary-date">2025年2月14日</div>
+                
+                今日、彼女は初めて本当の笑顔を見せてくれた。それは午後3時17分、窓から差し込む光が彼女の髪を金色に染めた瞬間だった。
+                
+                彼女の瞳の色：淡い琥珀色、光に当たると内側から輝くような。
+                
+                髪の状態：少し乱れていて、右側の一房が頬にかかっていた。
+                
+                服装：淡いクリーム色のブラウス、首元に小さな黄色い花の刺繍。
+                
+                笑顔の特徴：左の頬にだけできる小さなえくぼ、上の前歯の微かな重なり。
+                
+                声の調子：いつもより半音高く、最後の言葉が少し伸びる。
+                
+                この瞬間を、私は決して忘れない。彼女の本質がすべて現れた完璧な瞬間として、永遠に保存する。
+            </div>
+            
+            <p>このような詳細な記録は、単なる思い出以上のものだ。それは意図的な「保存」であり、対象の特定の瞬間を永遠に固定する試みだ。</p>
+            
+            <h3>環境の制御</h3>
+            
+            <p>物理的な標本が適切な環境で保存されるように、「人間標本」も適切な環境で保存される必要がある。これは、対象が最も美しく輝く環境を意図的に作り出し、維持することを意味する。</p>
+            
+            <p>例えば、ある人が特定の場所、特定の音楽、特定の香りの中で最も美しい表情を見せるなら、それらの要素を慎重に管理し、再現することで、「最高の瞬間」を何度も引き出すことができる。</p>
+            
+            <p>これは操作的に聞こえるかもしれないが、実際には深い理解と愛情に基づいている。愛する人が最も輝く瞬間を知り、その瞬間を大切にするための努力なのだ。</p>
+            
+            <h2>完璧な標本としての「お嬢様」</h2>
+            
+            <p>私の医師としての経験の中で、最も魅力的な「標本」となりうる存在に出会ったことがある。説明のために、彼女を「お嬢様」と呼ぼう。</p>
+            
+            <p>お嬢様は、ある裕福な家庭で育った若い女性だった。彼女の魅力は、その儚さと脆弱さにあった。まるで触れれば壊れてしまいそうな、蝶のような存在。</p>
+            
+            <p>彼女との関わりの中で、私はある特別な瞬間を目撃した。それは彼女が真実の自分を見せた、あるいは見せてしまった瞬間だった。通常は病的な環境や人間関係の中で隠されていた、彼女の本質が露わになった瞬間。</p>
+            
+            <p>その瞬間のお嬢様は、この世で最も美しい存在だった。</p>
+            
+            <div class="image-grid">
+                <img src="/api/placeholder/200/120" alt="蝶の標本1" class="grid-image">
+                <img src="/api/placeholder/200/120" alt="蝶の標本2" class="grid-image">
+                <img src="/api/placeholder/200/120" alt="蝶の標本3" class="grid-image">
+            </div>
+            
+            <p>私は医師として、彼女を「治療」する立場にあった。しかし次第に、私の目的は変わっていった。彼女を治すのではなく、彼女の美しさを永遠に保存したいという欲求が芽生えた。</p>
+            
+            <p>治療という名の下で、私は彼女を徐々に環境から分離し、私だけの空間に移していった。そして、彼女が最も美しく輝くための条件を慎重に整えた。</p>
+            
+            <p>これは支配ではない。むしろ、彼女の本質を最大限に引き出し、保存するための芸術的行為だ。彼女自身も、この過程の中で自分の美しさに気づき、それを受け入れていった。</p>
+            
+            <div class="poem">
+                <div class="poem-title">蝶の標本</div>
+                <div class="poem-line">ガラスの向こうに閉じ込めた</div>
+                <div class="poem-line">あなたの最も美しい瞬間</div>
+                <div class="poem-line">翅を広げたまま</div>
+                <div class="poem-line">永遠に動かない</div>
+                <div class="poem-line">永遠に生きる</div>
+                <div class="poem-line">永遠に私のもの</div>
+                <div class="poem-line">これは残酷さか？</div>
+                <div class="poem-line">それとも最大の愛か？</div>
+                <div class="poem-author">- 銀月 -</div>
+            </div>
+            
+            <h2>愛と所有の倫理学</h2>
+            
+            <p>ここまでの議論は、必然的に倫理的な問いを投げかける。「標本化」という形の愛は、果たして正当化できるのか？</p>
+            
+            <p>一方では、標本化は対象の自然な変化や成長を妨げるという批判がある。人間は変化し、成長し、時に後退することで、本当の自分を見つける。その過程を固定化することは、彼らの本質を奪うことにならないか？</p>
+            
+            <p>他方、真の愛は相手の最も美しい部分を見出し、それを大切にすることではないだろうか？現代社会では、人々はしばしば自分の本当の美しさに気づかず、それを引き出してくれる人を求めている。</p>
+            
+            <div class="warning-box">
+                <div class="warning-title">重要な倫理的考察</div>
+                <p>本稿は標本製作の比喩を通じて愛と所有の関係を考察するものであり、実際の人間関係において支配や抑圧を正当化するものではありません。健全な人間関係は相互の尊重と自由に基づくべきです。</p>
+            </div>
+            
+            <p>私自身の答えは、「標本化」と「育成」のバランスにある。愛する人の美しい瞬間を心に留め、大切にする。同時に、彼らの成長や変化も受け入れ、新たな美しさを発見していく。</p>
+            
+            <p>究極的には、真の標本製作者は対象を「殺して」保存するのではなく、その美しさを最大限に引き出し、生かしたまま永遠化する術を知っているのだ。</p>
+            
+            <h2>結論：永遠の所有という幻想</h2>
+            
+            <p>最後に、この「標本化」という概念の最大の矛盾に触れたい。完璧な所有と永遠の保存を目指す標本化は、実は不可能な夢なのかもしれない。</p>
+        
+        <p>物理的な標本でさえ、時間の経過とともに劣化する。最高の技術を用いても、永遠に変化を止めることはできない。同様に、精神的な「人間標本」も不完全なままだ。記憶は曖昧になり、記録は解釈され、写真は色褪せる。</p>
+        
+        <p>そして何より、対象を完全に「所有」することは不可能だ。人は常に変化し、その本質は捉えきれない。最も美しい瞬間を捉えても、それは全体の一部に過ぎない。</p>
+        
+        <div class="quote">
+            「真の所有とは、所有できないことを受け入れる矛盾の中にある」
+        </div>
+        
+        <p>では、標本作りの試みは無意味なのだろうか？私はそうは思わない。</p>
+        
+        <p>標本化の真の価値は、永遠の保存に成功することではなく、その過程にある。愛する対象を深く観察し、理解し、その美しさを認識し、記録する行為そのものが意味を持つ。</p>
+        
+        <div class="image-grid">
+            <img src="/api/placeholder/200/120" alt="標本箱" class="grid-image">
+            <img src="/api/placeholder/200/120" alt="蝶の標本" class="grid-image">
+            <img src="/api/placeholder/200/120" alt="記録帳" class="grid-image">
+        </div>
+        
+        <p>私とお嬢様の関係も同様だ。彼女の全てを永遠に所有することは不可能だと知りながらも、私は彼女の美しい瞬間を捉え続ける。それは彼女への最大の敬意であり、愛の証明だと信じている。</p>
+        
+        <p>最高の標本作家は、対象を完全に固定化することの不可能性を知っている。そして、その不完全さを受け入れた上で、最も美しい瞬間を記録し続ける。</p>
+        
+        <p>それは所有ではなく、献身だ。支配ではなく、理解だ。そして何より、愛そのものだ。</p>
+        
+        <p>私の「お嬢様」も、完璧な標本となることはないだろう。彼女は成長し、変化し、時に私の予想を裏切る。それでも私は、彼女の美しい瞬間を捉え続ける。</p>
+        
+        <div class="letter">
+            標本製作者の告白：
+            
+            私は時々、自分が何者なのか混乱する。医師なのか、標本製作者なのか、それとも単なる狂気の愛の囚人なのか。
+            
+            私の手帳には、彼女の何百もの瞬間が記録されている。彼女が初めて本当の笑顔を見せた日。彼女の涙が最も美しく輝いた雨の朝。彼女が怒りで頬を赤く染めた夕暮れ時。
+            
+            これらの瞬間は私だけのものだ。誰も知らない、誰も見たことのない彼女の姿。それを集め続けることが、私の人生の目的となっている。
+            
+            しかし時々、夜の闇の中で目を覚まし、恐ろしい疑問に襲われる—私は彼女を愛しているのか、それとも単に所有したいだけなのか。
+            
+            その答えは、おそらく両方なのだろう。そして、それが私の愛の形なのだ。
+        </div>
+        
+        <h3>小さな余白の告白</h3>
+        
+        <p>この記事を読んでくださったあなたへ。</p>
+        
+        <p>この文章は、私の内面を垣間見せる小さな窓に過ぎない。私の本当の思考と感情は、はるかに深く、複雑で、時に危険なものだ。</p>
+        
+        <p>しかし、それを全て言葉にすることはできない。言葉にした瞬間、その本質は失われてしまう。</p>
+        
+        <p>だから私は、この小さな窓を通じて、あなたの想像力に語りかけることにした。あなたの心の中で、私の言葉がどのように解釈され、広がっていくのか。それを想像するだけで、私は静かな興奮を覚える。</p>
+        
+        <p>もし、あなたがこの文章に共感を覚えたなら、私たちは似た魂を持つのかもしれない。もしそうなら、私たちはいつか、どこかで出会うことがあるだろう。</p>
+        
+        <div class="poem">
+            <div class="poem-title">永遠の標本</div>
+            <div class="poem-line">あなたは知らない</div>
+            <div class="poem-line">私があなたを</div>
+            <div class="poem-line">何度標本にしたか</div>
+            <div class="poem-line">言葉で</div>
+            <div class="poem-line">視線で</div>
+            <div class="poem-line">記憶で</div>
+            <div class="poem-line">あなたの笑顔一つで</div>
+            <div class="poem-line">私の標本箱は満たされる</div>
+            <div class="poem-line">そして空になる</div>
+            <div class="poem-line">繰り返し</div>
+            <div class="poem-line">永遠に</div>
+            <div class="poem-author">- 銀月 -</div>
+        </div>
+        
+        <p>その時まで。</p>
+        
+        <div class="tags">
+            <a href="#" class="tag">標本</a>
+            <a href="#" class="tag">愛と所有</a>
+            <a href="#" class="tag">形而上学</a>
+            <a href="#" class="tag">美の保存</a>
+            <a href="#" class="tag">医師の独白</a>
+            <a href="#" class="tag">人間観察</a>
+        </div>
+        
+        <div class="actions">
+            <a href="#" class="action-button">♡ いいね</a>
+            <a href="#" class="action-button">💬 コメント</a>
+            <a href="#" class="action-button">🔄 シェア</a>
+        </div>
+        
+        <div class="price-section">
+            <div class="price-header">この記事は</div>
+            <div class="price">¥800</div>
+            <a href="#" class="buy-button">記事を購入する</a>
+        </div>
+        
+        <div class="author-section">
+            <img src="/api/placeholder/80/80" alt="銀月のお医者さま" class="author-large-image">
+            <div class="author-large-info">
+                <div class="author-large-name">銀月のお医者さま</div>
+                <div class="author-bio">精神科医・作家。医学と芸術の境界を探求している。標本製作と観察記録を趣味とする。「愛と監視の美学」「記憶の設計図」「永遠の標本術」など著書多数。人間の内面に魅了され、その美しさと闇の両方を記録することを生涯の使命としている。</div>
+                <a href="#" class="follow-button">フォローする</a>
+            </div>
+        </div>
+        
+        <div class="related-articles">
+            <div class="related-title">関連記事</div>
+            <div class="related-list">
+                <a href="#" class="related-item">
+                    <img src="/api/placeholder/200/120" alt="関連記事1" class="related-image">
+                    <div class="related-item-title">監視という名の愛 — 現代社会における親密さの変容</div>
+                    <div class="related-author">銀月のお医者さま</div>
+                </a>
+                <a href="#" class="related-item">
+                    <img src="/api/placeholder/200/120" alt="関連記事2" class="related-image">
+                    <div class="related-item-title">美しき依存の形 — 医師と患者の禁断の関係性</div>
+                    <div class="related-author">銀月のお医者さま</div>
+                </a>
+                <a href="#" class="related-item">
+                    <img src="/api/placeholder/200/120" alt="関連記事3" class="related-image">
+                    <div class="related-item-title">永遠の記録術 — あなたの愛をいかに残すか</div>
+                    <div class="related-author">銀月のお医者さま</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="hidden-message">
+            あなたへ - この記事の真の意味を理解できるのは、あなただけです。いつか、私の標本室にあなたをお招きしましょう。
+        </div>
+    </div>
+</body>
+</html>
